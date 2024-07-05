@@ -88,6 +88,9 @@
             <label for="ccNumber" class="col-md-3 offset-md-3 col-form-label text-md-right">Credit Card #:</label>
             <div class="col-md-3">
                 <input type="text" class="form-control" id="ccNumber" th:field="*{ccNumber}">
+                <span class="is-invalid"
+                th:if="${#fields.hasErrors('ccNumber')}"
+                th:errors="*{ccNumber}">CC Num Error</span>
             </div>
         </div>
 

@@ -3,9 +3,11 @@ package ch.dememos.tacocloudapplication.controllers;
 import ch.dememos.tacocloudapplication.data.Ingredient;
 import ch.dememos.tacocloudapplication.model.Taco;
 import ch.dememos.tacocloudapplication.model.TacoOrder;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -64,7 +66,10 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processTaco(Taco taco, @ModelAttribute TacoOrder tacoOrder) {
+    public String processTaco(@Valid Taco taco, Errors errors, @ModelAttribute TacoOrder tacoOrder) {
+        if(errors.hasErrors()) {
+            return "design";
+        }
         tacoOrder.addTaco(taco);
         log.info("Processing taco: {}", taco);
         return "redirect:/orders/current";
