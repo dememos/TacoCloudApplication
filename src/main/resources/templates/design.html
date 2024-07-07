@@ -101,6 +101,9 @@
             <div class="form-group row mb-3 text-center">
                 <div class="col-md-6 offset-md-3">
                     <input type="text" th:field="*{name}" class="form-control">
+                    <span class="is-invalid"
+                          th:if="${#fields.hasErrors('name')}"
+                          th:errors="*{name}">Name be at least 5 characters long</span>
                 </div>
             </div>
             <div class="form-group row mb-3 text-center">

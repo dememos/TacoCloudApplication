@@ -47,6 +47,9 @@
             <label for="deliveryName" class="col-md-3 offset-md-3 col-form-label text-md-right">Name:</label>
             <div class="col-md-3">
                 <input type="text" class="form-control" id="deliveryName" th:field="*{deliveryName}">
+                <span class="is-invalid"
+                      th:if="${#fields.hasErrors('deliveryName')}"
+                      th:errors="*{deliveryName}">Delivery name is required</span>
             </div>
         </div>
 
@@ -54,6 +57,9 @@
             <label for="deliveryStreet" class="col-md-3 offset-md-3 col-form-label text-md-right">Street address:</label>
             <div class="col-md-3">
                 <input type="text" class="form-control" id="deliveryStreet" th:field="*{deliveryStreet}">
+                <span class="is-invalid"
+                      th:if="${#fields.hasErrors('deliveryStreet')}"
+                      th:errors="*{deliveryStreet}">Street is required</span>
             </div>
         </div>
 
@@ -61,6 +67,9 @@
             <label for="deliveryCity" class="col-md-3 offset-md-3 col-form-label text-md-right">City:</label>
             <div class="col-md-3">
                 <input type="text" class="form-control" id="deliveryCity" th:field="*{deliveryCity}">
+                <span class="is-invalid"
+                      th:if="${#fields.hasErrors('deliveryCity')}"
+                      th:errors="*{deliveryCity}">City is required</span>
             </div>
         </div>
 
@@ -68,6 +77,9 @@
             <label for="deliveryState" class="col-md-3 offset-md-3 col-form-label text-md-right">State:</label>
             <div class="col-md-3">
                 <input type="text" class="form-control" id="deliveryState" th:field="*{deliveryState}">
+                <span class="is-invalid"
+                      th:if="${#fields.hasErrors('deliveryState')}"
+                      th:errors="*{deliveryState}">State is required</span>
             </div>
         </div>
 
@@ -75,6 +87,9 @@
             <label for="deliveryZip" class="col-md-3 offset-md-3 col-form-label text-md-right">Zip code:</label>
             <div class="col-md-3">
                 <input type="text" class="form-control" id="deliveryZip" th:field="*{deliveryZip}">
+                <span class="is-invalid"
+                      th:if="${#fields.hasErrors('deliveryZip')}"
+                      th:errors="*{deliveryZip}">Zip is required</span>
             </div>
         </div>
 
@@ -98,6 +113,9 @@
             <label for="ccExpiration" class="col-md-3 offset-md-3 col-form-label text-md-right">Expiration:</label>
             <div class="col-md-3">
                 <input type="text" class="form-control" id="ccExpiration" th:field="*{ccExpiration}">
+                <span class="is-invalid"
+                      th:if="${#fields.hasErrors('ccExpiration')}"
+                      th:errors="*{ccExpiration}">Must be formatted MM/YY</span>
             </div>
         </div>
 
@@ -105,6 +123,9 @@
             <label for="ccCVV" class="col-md-3 offset-md-3 col-form-label text-md-right">CVV:</label>
             <div class="col-md-3">
                 <input type="text" class="form-control" id="ccCVV" th:field="*{ccCVV}">
+                <span class="is-invalid"
+                      th:if="${#fields.hasErrors('ccCVV')}"
+                      th:errors="*{ccCVV}">Invalid CVV</span>
             </div>
         </div>
 
