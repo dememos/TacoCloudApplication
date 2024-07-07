@@ -1,15 +1,17 @@
 package ch.dememos.tacocloudapplication.model;
 
-import ch.dememos.tacocloudapplication.data.Ingredient;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import lombok.NonNull;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
 public class Taco {
+
+    private Long id;
+    private Date createdAt = new Date();
 
     @NotNull
     @Size(min = 5, message = "Name be at least 5 characters long")

@@ -1,8 +1,9 @@
 package ch.dememos.tacocloudapplication.controllers;
 
-import ch.dememos.tacocloudapplication.data.Ingredient;
+import ch.dememos.tacocloudapplication.model.Ingredient;
 import ch.dememos.tacocloudapplication.model.Taco;
 import ch.dememos.tacocloudapplication.model.TacoOrder;
+import ch.dememos.tacocloudapplication.components.IngredientRepository;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,24 +21,32 @@ import java.util.stream.Collectors;
 @SessionAttributes("tacoOrder")
 public class DesignTacoController {
 
+    private final IngredientRepository ingredientRepository;
+
+    public DesignTacoController(IngredientRepository ingredientRepository) {
+        this.ingredientRepository = ingredientRepository;
+    }
+
+
     @ModelAttribute
     public void addIngredientsToModel(Model model) {
-        List<Ingredient> ingredients = Arrays.asList(
-                new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
-                new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
-                new Ingredient("GBFT", "Ground Beef", Ingredient.Type.PROTEIN),
-                new Ingredient("IUOL", "Carnitas", Ingredient.Type.PROTEIN),
-                new Ingredient("JKIU", "Diced Tomates", Ingredient.Type.VEGGIES),
-                new Ingredient("HDJS", "Lettuce", Ingredient.Type.VEGGIES),
-                new Ingredient("LOSD", "Cheddar", Ingredient.Type.CHEESE),
-                new Ingredient("KSDJ", "Monterrey Jack", Ingredient.Type.CHEESE),
-                new Ingredient("JSHA", "Salsa", Ingredient.Type.SAUCE),
-                new Ingredient("XSDV", "Sour Cream", Ingredient.Type.SAUCE)
-        );
+//        List<Ingredient> ingredients = Arrays.asList(
+//                new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
+//                new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
+//                new Ingredient("GBFT", "Ground Beef", Ingredient.Type.PROTEIN),
+//                new Ingredient("IUOL", "Carnitas", Ingredient.Type.PROTEIN),
+//                new Ingredient("JKIU", "Diced Tomates", Ingredient.Type.VEGGIES),
+//                new Ingredient("HDJS", "Lettuce", Ingredient.Type.VEGGIES),
+//                new Ingredient("LOSD", "Cheddar", Ingredient.Type.CHEESE),
+//                new Ingredient("KSDJ", "Monterrey Jack", Ingredient.Type.CHEESE),
+//                new Ingredient("JSHA", "Salsa", Ingredient.Type.SAUCE),
+//                new Ingredient("XSDV", "Sour Cream", Ingredient.Type.SAUCE)
+//        );
 
+        Iterable<Ingredient> ingredients = ingredientRepository.findAll();
         Ingredient.Type[] types = Ingredient.Type.values();
         for (Ingredient.Type type : types) {
-            model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
+            model.addAttribute(type.toString().toLowerCase(), filterByType((List<Ingredient>) ingredients, type));
         }
 
     }

@@ -1,4 +1,4 @@
-package ch.dememos.tacocloudapplication.data;
+package ch.dememos.tacocloudapplication.model;
 
 import lombok.Data;
 
